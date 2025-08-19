@@ -5,7 +5,7 @@ Created On : 20-Aug-2025 <br>
 Last Updated : 20-Aug-2025 <br>
 References : [PDF](powerquery-m.pdf) | [Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json) <br>
 
->## **Disclaimer** <br>
+## **Disclaimer** <br>
 >This cheatsheet is a community-compiled reference intended for quick lookup and learning. Power Query M evolves over time and :
 >
 >- Some functions, connectors, options, or examples here may be deprecated, renamed, or behavior-changed across product versions (Power BI Desktop/Service, Excel, Dataflows, Fabric, Gateway).
