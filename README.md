@@ -65,6 +65,7 @@ Always follow the latest syntax and guidance from **Microsoft Learn** and your *
     <li><a href="#-text-helper-functions">📂 Text Helper Functions</a></li>
     <li><a href="#-number-helper-functions">📂 Number Helper Functions</a></li>
     <li><a href="#-datetime-overloads">📂 Date/Time Overloads</a></li>
+    <li><a href="#-other-functions--syntaxes">📂 Other Functions / Syntaxes</a></li>
   </ul>
 </nav>
 <br>
@@ -11883,7 +11884,12 @@ DateTimeZone.RemoveZone(\#datetimezone(2025,8,20,11,26,0,+5.5))
 ***
 
 
-# Other Functions/Syntaxes from powerquery-m.pdf
+<section id="-other-functions--syntaxes">
+  <h2>📂 Other Functions / Syntaxes</h2>
+</section>
+
+***
+
 - 0 
 (optional x)
 - 0 
