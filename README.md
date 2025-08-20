@@ -1,7 +1,7 @@
 ﻿# 📌 Power Query / M Query Cheatsheet
 
 **Author** : [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/)  
-**Version** : `v1.0.0`  
+**Version** : `v1.0.1`  
 **Created On** : `20-Aug-2025`  
 **Last Updated** : `20-Aug-2025`  
 **References** : [📄 PDF](https://github.com/naveenjujaray/M-Query-Cheat-Sheet/blob/a70efcef6fe0fbc46e270f254d9104301f33cd7f/powerquery-m.pdf) | [🌐 Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json)  
