@@ -11230,6 +11230,6 @@ DateTimeZone.RemoveZone(datetimezone as datetimezone) as datetime
 # END OF THE CHEATSHEET
 ***
 ***
-Made with ❤️ by [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/)
+Made with ❤️ [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/)
 ***
 ***
