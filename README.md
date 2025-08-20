@@ -8960,7 +8960,6 @@ Diagnostics.ActivityId()
 
 ***
 
-```
 
 ### Excel.Workbook
 
@@ -10178,9 +10177,7 @@ GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/<id>/edit")
 <section id="-binary-functions"><h2>📂 Binary Functions</h2></section>
 
 
-***
-
-```
+**
 
 ### Binary.Buffer
 
@@ -10356,8 +10353,6 @@ Binary.ToList(Text.ToBinary("AB"))
 These describe **how to read/write binary streams**.
 
 ***
-
-```
 
 ### BinaryFormat.Binary
 
@@ -10641,8 +10636,6 @@ BinaryFormat.Repeat(BinaryFormat.Byte, 4)
 
 ***
 
-```
-
 ### Combiner.CombineTextByDelimiter
 
 **Syntax**
@@ -10699,8 +10692,6 @@ Combiner.CombineTextByLengths({1,2})({"A","BC"})
 
 
 ***
-
-```
 
 ### Comparer.Equals
 
@@ -10760,8 +10751,6 @@ Comparer.Ordinal
 
 
 ***
-
-```
 
 ### Lines.FromBinary
 
@@ -10836,8 +10825,6 @@ Lines.ToText({"A","B","C"}, "|")
 
 ***
 
-```
-
 ### Replacer.ReplaceText
 
 **Syntax**
@@ -10851,8 +10838,6 @@ Replacer.ReplaceText("old","new")
 **Example**
 ```m
 Table.ReplaceValue(\#table({"A"},{{"Hello"}}),"Hello","World", Replacer.ReplaceText, {"A"})
-
-
 ```
 
 ### Replacer.ReplaceValue
@@ -10878,8 +10863,6 @@ Table.ReplaceValue(\#table({"A"},{{1}}),1,0, Replacer.ReplaceValue, {"A"})
 
 
 ***
-
-```
 
 ### Splitter.SplitTextByDelimiter
 
@@ -11005,8 +10988,6 @@ Splitter.SplitTextByRanges({{0,2},{2,3}})("ABCDE")
 
 ***
 
-```
-
 ### Uri.Parts
 
 **Syntax**
@@ -11080,8 +11061,6 @@ Uri.UnescapeDataString("a%20b")
 
 
 ***
-
-```
 
 ### Value.Type
 
@@ -11290,8 +11269,6 @@ Value.ReplaceError(try 1/0 otherwise null, -1)
 
 ***
 
-```
-
 ### Expression.Evaluate
 
 **Syntax**
@@ -11399,8 +11376,6 @@ Error.Raise("Invalid", "No data")
 
 
 ***
-
-```
 
 ### Table.SelectColumns
 
@@ -11563,8 +11538,6 @@ Table.AddIndexColumn(\#table({"A"},{{1},{2}}), "Index", 0, 1, Int64.Type)
 
 ***
 
-```
-
 ### Text.Contains
 
 **Syntax**
@@ -11708,8 +11681,6 @@ Text.ReplaceEach("Hello World", {{"Hello","Hi"}})
 
 ***
 
-```
-
 ### Number.Round
 
 **Syntax**
@@ -11784,8 +11755,6 @@ Number.FromText("1,234.56", "en-US")
 
 
 ***
-
-```
 
 ### Date.ToText
 
