@@ -1,30 +1,38 @@
-﻿# Power Query / M Query Cheatsheet
+﻿# 📌 Power Query / M Query Cheatsheet
 
-Author : [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/) <br>
-Created On : 20-Aug-2025 <br>
-Last Updated : 20-Aug-2025 <br>
-References : [PDF](https://github.com/naveenjujaray/M-Query-Cheat-Sheet/blob/a70efcef6fe0fbc46e270f254d9104301f33cd7f/powerquery-m.pdf) | [Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json) <br>
+**Author** : [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/)  
+**Version** : `v1.0.0`  
+**Created On** : `20-Aug-2025`  
+**Last Updated** : `20-Aug-2025`  
+**References** : [📄 PDF](https://github.com/naveenjujaray/M-Query-Cheat-Sheet/blob/a70efcef6fe0fbc46e270f254d9104301f33cd7f/powerquery-m.pdf) | [🌐 Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json)  
 
-## **Disclaimer** <br>
->This cheatsheet is a community-compiled reference intended for quick lookup and learning. Power Query M evolves over time and :
->
->- Some functions, connectors, options, or examples here may be deprecated, renamed, or behavior-changed across product versions (Power BI Desktop/Service, Excel, Dataflows, Fabric, Gateway).
->
->- Certain features may be preview-only, region-limited, or require specific privacy, authentication, or tenant settings.
->
->- Syntax, parameter shapes, return types, folding behavior, and culture/locale handling can differ between engines and releases.
->
->Before using any item in production :
->
->- Verify the current function signature, availability, and supported options in the latest official documentation.
->
->- Test in a clean query with your target engine and data source.
->
->- Prefer explicit types and culture parameters where applicable.
->
->- Watch for deprecation notices, connector version notes, and breaking-change announcements.
->
->Use at your own risk. No warranty of completeness, correctness, or fitness for a particular purpose is provided. Always follow the latest syntax and guidance from Microsoft Learn and your organization’s governance policies.
+---
+
+## ⚠️ Disclaimer  
+
+> This cheatsheet is a **community-compiled reference** intended for quick lookup and learning.  
+> Power Query M evolves over time, therefore:  
+
+- 🔄 Some functions, connectors, options, or examples may be **deprecated**, **renamed**, or have **changed behavior** across product versions (Power BI Desktop/Service, Excel, Dataflows, Fabric, Gateway).  
+- 🌍 Certain features may be **preview-only**, **region-limited**, or require specific **privacy, authentication, or tenant settings**.  
+- 🧩 Syntax, parameter shapes, return types, folding behavior, and culture/locale handling can differ between **engines and releases**.  
+
+---
+
+### ✅ Before using in production  
+
+- ✔️ **Verify** the current function signature, availability, and supported options in the [official documentation](https://learn.microsoft.com/en-us/powerquery-m/).  
+- 🧪 **Test** in a clean query with your **target engine** and **data source**.  
+- 📐 Prefer **explicit types** and **culture parameters** where applicable.  
+- 🔔 Watch for **deprecation notices**, **connector version notes**, and **breaking-change announcements**.  
+
+---
+
+💡 *Use at your own risk.*  
+No warranty of completeness, correctness, or fitness for a particular purpose is provided.  
+Always follow the latest syntax and guidance from **Microsoft Learn** and your **organization’s governance policies**.  
+
+---
 
 ## Tables of Content
 <nav aria-label="Table of Contents">
