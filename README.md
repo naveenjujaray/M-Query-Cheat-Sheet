@@ -3,7 +3,7 @@
 Author : [Naveen Jujaray](https://www.linkedin.com/in/naveenjujaray/) <br>
 Created On : 20-Aug-2025 <br>
 Last Updated : 20-Aug-2025 <br>
-References : [PDF](powerquery-m.pdf) | [Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json) <br>
+References : [PDF](https://github.com/naveenjujaray/M-Query-Cheat-Sheet/blob/a70efcef6fe0fbc46e270f254d9104301f33cd7f/powerquery-m.pdf) | [Web](https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fpowerquery-m%2Ftoc.json) <br>
 
 ## **Disclaimer** <br>
 >This cheatsheet is a community-compiled reference intended for quick lookup and learning. Power Query M evolves over time and :
