@@ -1,9 +1,0 @@
-# Remove or comment out any local theme line:
-# theme: jekyll-theme-primer
-
-plugins:
-  - jekyll-remote-theme
-
-remote_theme: just-the-docs/just-the-docs@main
-# Better: pin to a release, e.g.
-# remote_theme: just-the-docs/just-the-docs@v0.6.0
