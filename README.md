@@ -8785,184 +8785,174 @@ let MyVar = 99 in Expression.Identifier("MyVar")
 
 ***
 
-### **Section.Section**
+### Section.Section
 
 **Syntax**
-
 ```m
 Section.Section(name as text) as section
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Section.Section("MySection")
-// Creates a new section
+```
+**Example**
+```m
+Section.Section("MySection")
+
+
 ```
 
-
-***
-
-### **Section.Members**
+### Section.Members
 
 **Syntax**
-
 ```m
 Section.Members(section as section) as record
 ```
-
+**Syntax + Placeholder**
+```m
+Section.Members(\#sections[MySection])
+```
 **Example**
-
 ```m
-Section.Members(#sections[MySection])
+Section.Members(\#sections[MySection])
+
+
 ```
 
-
-***
-
-### \#sections
+### sections
 
 **Syntax + Example**
-
 ```m
-#sections
-// Returns all sections in environment
+\#sections
+
+
 ```
 
-
-***
-
-### \#shared
+### shared
 
 **Syntax + Example**
-
 ```m
-#shared
-// Returns all shared functions in environment
+\#shared
+
+
 ```
 
-
-***
-
-### **Value.Metadata**
+### Value.Metadata
 
 **Syntax**
-
 ```m
 Value.Metadata(value as any) as record
 ```
-
+**Syntax + Placeholder**
+```m
+Value.Metadata("X")
+```
 **Example**
-
 ```m
 Value.Metadata(123)
-// Output: metadata record if exists
+
+
 ```
 
-
-***
-
-### **Value.AddMetadata**
+### Value.AddMetadata
 
 **Syntax**
-
 ```m
 Value.AddMetadata(value as any, metadata as record) as any
 ```
-
+**Syntax + Placeholder**
+```m
+Value.AddMetadata("X", [Source="User"])
+```
 **Example**
-
 ```m
 Value.AddMetadata(100, [Source="User"])
-// Output: 100 with metadata
+
+
 ```
 
-
-***
-
-### **Table.View**
+### Table.View
 
 **Syntax**
-
 ```m
 Table.View(name as text, handlers as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
-Table.View("MyView", [GetType = ()=> type table [A=number], GetRows=()=> {{1},{2}}])
+Table.View("MyView", [GetType=()=> type table [A=number], GetRows=()=> {{1},{2}}])
+```
+**Example**
+```m
+Table.View("MyView", [GetType=()=> type table [A=number], GetRows=()=> {{1},{2}}])
+
+
 ```
 
-
-***
-
-### **Binary.Compress**
+### Binary.Compress
 
 **Syntax**
-
 ```m
 Binary.Compress(binary as binary, compressionType as number) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate)
 ```
+**Example**
+```m
+Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate)
 
 
-***
+```
 
-### **Binary.Decompress**
+### Binary.Decompress
 
 **Syntax**
-
 ```m
 Binary.Decompress(binary as binary, compressionType as number) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.Decompress(Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate), Compression.Deflate)
 ```
+**Example**
+```m
+Binary.Decompress(Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate), Compression.Deflate)
 
 
-***
+```
 
-### **Diagnostics.Trace**
+### Diagnostics.Trace
 
 **Syntax**
-
 ```m
 Diagnostics.Trace(level as number, message as text, details as any) as any
 ```
-
+**Syntax + Placeholder**
+```m
+Diagnostics.Trace(1, "Step running", [Detail="Info"])
+```
 **Example**
-
 ```m
 Diagnostics.Trace(1, "Step running", [Detail="Log Info"])
+
+
 ```
 
-
-***
-
-### **Diagnostics.ActivityId**
+### Diagnostics.ActivityId
 
 **Syntax**
-
 ```m
 Diagnostics.ActivityId() as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Diagnostics.ActivityId()
-// Returns a unique trace id
 ```
-
+**Example**
+```m
+Diagnostics.ActivityId()
+```
 
 ***
 <section id="-accessing-data-functions"><h2>📂 Accessing Data Functions</h2></section>
@@ -8970,990 +8960,1217 @@ Diagnostics.ActivityId()
 
 ***
 
-### **Excel.Workbook**
+```
+
+### Excel.Workbook
 
 **Syntax**
-
 ```m
 Excel.Workbook(binary as binary, optional useHeaders as any) as table
 ```
-
 **Syntax + Placeholder**
-
 ```m
 Excel.Workbook(File.Contents("C:\Data\Sales.xlsx"), true)
 ```
-
 **Example**
-
 ```m
 Excel.Workbook(File.Contents("C:\Data\Sales.xlsx"), true)
-// Returns a table of sheets and tables inside workbook
+
+
 ```
 
-
-***
-
-### **Excel.CurrentWorkbook**
+### Excel.CurrentWorkbook
 
 **Syntax**
-
 ```m
 Excel.CurrentWorkbook() as table
 ```
-
+**Syntax + Placeholder**
+```m
+Excel.CurrentWorkbook()
+```
 **Example**
-
 ```m
 Excel.CurrentWorkbook(){[Name="Sales"]}[Content]
+
+
 ```
 
-
-***
-
-### **Excel.TableDefinedNames**
+### Excel.TableDefinedNames
 
 **Syntax**
-
 ```m
 Excel.TableDefinedNames(workbook as any) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Excel.TableDefinedNames(File.Contents("C:\Data\Report.xlsx"))
 ```
+**Example**
+```m
+Excel.TableDefinedNames(File.Contents("C:\Data\Report.xlsx"))
 
 
-***
+```
 
-### **Excel.SheetNames**
+### Excel.SheetNames
 
 **Syntax**
-
 ```m
 Excel.SheetNames(workbook as any) as list
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Excel.SheetNames(File.Contents("C:\Data\Test.xlsx"))
 ```
-
-
-***
-
-### **Excel.CurrentWorkbook.Contents()**
-
-**Syntax**
-
-```m
-Excel.CurrentWorkbook.Contents()
-```
-
 **Example**
+```m
+Excel.SheetNames(File.Contents("C:\Data\Test.xlsx"))
 
+
+```
+
+### Excel.CurrentWorkbook.Contents
+
+**Syntax**
 ```m
 Excel.CurrentWorkbook.Contents()
 ```
+**Syntax + Placeholder**
+```m
+Excel.CurrentWorkbook.Contents()
+```
+**Example**
+```m
+Excel.CurrentWorkbook.Contents()
 
 
-***
+```
 
-### **Csv.Document**
+### Csv.Document
 
 **Syntax**
-
 ```m
 Csv.Document(binary as binary, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Csv.Document(File.Contents("C:\Data\sales.csv"), [Delimiter=",", Columns=5, Encoding=1252])
 ```
+**Example**
+```m
+Csv.Document(File.Contents("C:\Data\sales.csv"), [Delimiter=",", Columns=5, Encoding=1252])
 
 
-***
+```
 
-### **Csv.PromoteHeaders**
+### Csv.PromoteHeaders
 
 **Syntax**
-
 ```m
 Csv.PromoteHeaders(table as table, optional options as record) as table
 ```
-
+**Syntax + Placeholder**
+```m
+Csv.PromoteHeaders(Source)
+```
 **Example**
-
 ```m
 Csv.PromoteHeaders(Table.FromRecords({[Col1="A", Col2="B"]}))
+
+
 ```
 
-
-***
-
-### **Csv.FromRows**
+### Csv.FromRows
 
 **Syntax**
-
 ```m
 Csv.FromRows(rows as list, optional options as record) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Csv.FromRows({{"A","B"},{"C","D"}}, [Delimiter=","])
-// Output text: "A,B↵C,D"
+```
+**Example**
+```m
+Csv.FromRows({{"A","B"},{"C","D"}}, [Delimiter=","])
+
+
 ```
 
-
-***
-
-### **Json.Document**
+### Json.Document
 
 **Syntax**
-
 ```m
 Json.Document(source as any, optional encoding as any) as any
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Json.Document(File.Contents("C:\Data\data.json"))
 ```
+**Example**
+```m
+Json.Document(File.Contents("C:\Data\data.json"))
 
 
-***
+```
 
-### **Json.FromValue**
+### Json.FromValue
 
 **Syntax**
-
 ```m
 Json.FromValue(value as any) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Json.FromValue([Name="John", Age=30])
 ```
+**Example**
+```m
+Json.FromValue([Name="John", Age=30])
 
 
-***
+```
 
-### **Xml.Document**
+### Xml.Document
 
 **Syntax**
-
 ```m
 Xml.Document(source as any) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Xml.Document(File.Contents("C:\Data\data.xml"))
 ```
+**Example**
+```m
+Xml.Document(File.Contents("C:\Data\data.xml"))
 
 
-***
+```
 
-### **Xml.Tables**
+### Xml.Tables
 
 **Syntax**
-
 ```m
 Xml.Tables(source as any) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Xml.Tables(File.Contents("C:\Data\data.xml"))
 ```
+**Example**
+```m
+Xml.Tables(File.Contents("C:\Data\data.xml"))
 
 
-***
+```
 
-### **Xml.Table**
+### Xml.Table
 
 **Syntax**
-
 ```m
 Xml.Table(source as any, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Xml.Table("<root><x>1</x><x>2</x></root>")
 ```
+**Example**
+```m
+Xml.Table("<root><x>1</x><x>2</x></root>")
 
 
-***
+```
 
-### **Web.Contents**
+### Web.Contents
 
 **Syntax**
-
 ```m
 Web.Contents(url as text, optional options as record) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Web.Contents("https://api.example.com/data")
 ```
+**Example**
+```m
+Web.Contents("https://api.example.com/data")
 
 
-***
+```
 
-### **Web.Page**
+### Web.Page
 
 **Syntax**
-
 ```m
 Web.Page(html as any) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Web.Page(Web.Contents("https://example.com"))
 ```
+**Example**
+```m
+Web.Page(Web.Contents("https://example.com"))
 
 
-***
+```
 
-### **Web.BrowserContents**
+### Web.BrowserContents
 
 **Syntax**
-
 ```m
 Web.BrowserContents(url as text) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Web.BrowserContents("https://example.com")
 ```
+**Example**
+```m
+Web.BrowserContents("https://example.com")
 
 
-***
+```
 
-### **OData.Feed**
+### OData.Feed
 
 **Syntax**
-
 ```m
 OData.Feed(url as any, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 OData.Feed("https://services.odata.org/V4/Northwind/Northwind.svc")
 ```
+**Example**
+```m
+OData.Feed("https://services.odata.org/V4/Northwind/Northwind.svc")
 
 
-***
+```
 
-### **ODataV2.Feed / ODataV3.Feed / ODataV4.Feed**
-
-Same as `OData.Feed`, but version-specific.
-
-***
-
-### **Odbc.DataSource**
+### ODataV2.Feed / ODataV3.Feed / ODataV4.Feed
 
 **Syntax**
+```m
+ODataV2.Feed(url as any, optional options as record) as table
+ODataV3.Feed(url as any, optional options as record) as table
+ODataV4.Feed(url as any, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+ODataV4.Feed("https://services.odata.org/V4/Northwind/Northwind.svc")
+```
+**Example**
+```m
+ODataV4.Feed("https://services.odata.org/V4/Northwind/Northwind.svc")
 
+
+```
+
+### Odbc.DataSource
+
+**Syntax**
 ```m
 Odbc.DataSource(connection as any, optional options as record) as table
 ```
-
+**Syntax + Placeholder**
+```m
+Odbc.DataSource("dsn=MyDsn")
+```
 **Example**
-
 ```m
 Odbc.DataSource("dsn=mydb")
+
+
 ```
 
-
-***
-
-### **Odbc.Query**
+### Odbc.Query
 
 **Syntax**
-
 ```m
 Odbc.Query(connection as any, query as text, optional options as record) as table
 ```
-
+**Syntax + Placeholder**
+```m
+Odbc.Query("dsn=MyDsn", "SELECT 1 AS X")
+```
 **Example**
-
 ```m
 Odbc.Query("dsn=mydb", "SELECT * FROM Sales")
+
+
 ```
 
-
-***
-
-### **Odbc.InferOptions**
+### Odbc.InferOptions
 
 **Syntax**
-
 ```m
 Odbc.InferOptions(connection as any) as record
 ```
+**Syntax + Placeholder**
+```m
+Odbc.InferOptions("dsn=MyDsn")
+```
+**Example**
+```m
+Odbc.InferOptions("dsn=mydb")
 
 
-***
+```
 
-### **OleDb.DataSource**
+### OleDb.DataSource
 
 **Syntax**
-
 ```m
 OleDb.DataSource(provider as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+OleDb.DataSource("Provider=SQLOLEDB;Data Source=Server;Initial Catalog=DB;Integrated Security=SSPI;")
+```
+**Example**
+```m
+OleDb.DataSource("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Data\;Extended Properties=""Text;HDR=YES;FMT=Delimited"";")
 
 
-***
+```
 
-### **OleDb.Query**
+### OleDb.Query
 
 **Syntax**
-
 ```m
 OleDb.Query(provider as text, query as text) as table
 ```
+**Syntax + Placeholder**
+```m
+OleDb.Query("Provider=SQLOLEDB;Data Source=Server;Initial Catalog=DB;Integrated Security=SSPI;", "SELECT 1 AS X")
+```
+**Example**
+```m
+OleDb.Query("Provider=SQLOLEDB;Data Source=Server;Initial Catalog=DB;Integrated Security=SSPI;", "SELECT TOP 10 * FROM dbo.Table")
 
 
-***
+```
 
-### **Sql.Database**
+### Sql.Database
 
 **Syntax**
-
 ```m
 Sql.Database(server as text, database as text, optional options as record) as table
 ```
-
+**Syntax + Placeholder**
+```m
+Sql.Database("ServerName", "DatabaseName")
+```
 **Example**
-
 ```m
 Sql.Database("serverName", "SalesDB")
+
+
 ```
 
-
-***
-
-### **Sql.Databases**
+### Sql.Databases
 
 **Syntax**
-
 ```m
 Sql.Databases(server as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+Sql.Databases("ServerName")
+```
+**Example**
+```m
+Sql.Databases("ServerName")
 
 
-***
+```
 
-### **Sql.Execute**
+### Sql.Execute
 
 **Syntax**
-
 ```m
 Sql.Execute(server as text, database as text, query as text) as table
 ```
+**Syntax + Placeholder**
+```m
+Sql.Execute("ServerName", "DatabaseName", "SELECT 1 AS X")
+```
+**Example**
+```m
+Sql.Execute("serverName", "SalesDB", "SELECT * FROM dbo.Sales")
 
 
-***
+```
 
-### **Sql.Query**
+### Sql.Query
 
 **Syntax**
-
 ```m
 Sql.Query(server as text, query as text, optional options as record) as table
 ```
-***
+**Syntax + Placeholder**
+```m
+Sql.Query("ServerName", "SELECT 1 AS X")
+```
+**Example**
+```m
+Sql.Query("serverName", "SELECT TOP 10 * FROM sys.tables")
 
-### **AnalysisServices.Database**
+
+```
+
+### AnalysisServices.Database
 
 **Syntax**
-
 ```m
 AnalysisServices.Database(server as text, database as text, optional options as record) as table
 ```
-
-**Placeholder**
-
+**Syntax + Placeholder**
 ```m
-AnalysisServices.Database("MyServer", "ModelDB")
+AnalysisServices.Database("asazure://region.asazure.windows.net/Server1", "ModelDB")
 ```
-
 **Example**
-
 ```m
 AnalysisServices.Database("asazure://region.asazure.windows.net/Server1", "SalesModel")
+
+
 ```
 
-
-***
-
-### **AnalysisServices.Databases**
+### AnalysisServices.Databases
 
 **Syntax**
-
 ```m
 AnalysisServices.Databases(server as text, optional options as record) as table
 ```
-
+**Syntax + Placeholder**
+```m
+AnalysisServices.Databases("asazure://region.asazure.windows.net/Server1")
+```
 **Example**
-
 ```m
 AnalysisServices.Databases("Server1")
+
+
 ```
 
-
-***
-
-### **ActiveDirectory.Domains**
+### ActiveDirectory.Domains
 
 **Syntax**
-
 ```m
 ActiveDirectory.Domains(optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 ActiveDirectory.Domains()
 ```
+**Example**
+```m
+ActiveDirectory.Domains()
 
 
-***
+```
 
-### **ActiveDirectory.Domain**
+### ActiveDirectory.Domain
 
 **Syntax**
-
 ```m
 ActiveDirectory.Domain(domain as text, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 ActiveDirectory.Domain("contoso.com")
 ```
+**Example**
+```m
+ActiveDirectory.Domain("contoso.com")
 
 
-***
+```
 
-### **Exchange.Contents**
+### Exchange.Contents
 
 **Syntax**
-
 ```m
 Exchange.Contents(url as text, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Exchange.Contents("https://outlook.office365.com/EWS/Exchange.asmx")
 ```
+**Example**
+```m
+Exchange.Contents("https://outlook.office365.com/EWS/Exchange.asmx")
 
 
-***
+```
 
-### **Exchange.Contacts**
+### Exchange.Contacts
 
 **Syntax**
-
 ```m
 Exchange.Contacts(url as text, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Exchange.Contacts("https://outlook.office365.com/EWS/Exchange.asmx")
 ```
+**Example**
+```m
+Exchange.Contacts("https://outlook.office365.com/EWS/Exchange.asmx")
 
 
-***
+```
 
-### **SharePoint.Contents**
+### SharePoint.Contents
 
 **Syntax**
-
 ```m
 SharePoint.Contents(siteUrl as text, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 SharePoint.Contents("https://contoso.sharepoint.com/sites/Finance")
 ```
+**Example**
+```m
+SharePoint.Contents("https://contoso.sharepoint.com/sites/Finance")
 
 
-***
+```
 
-### **SharePoint.Files**
+### SharePoint.Files
 
 **Syntax**
-
 ```m
 SharePoint.Files(siteUrl as text, optional options as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 SharePoint.Files("https://contoso.sharepoint.com/sites/Finance")
 ```
+**Example**
+```m
+SharePoint.Files("https://contoso.sharepoint.com/sites/Finance")
 
 
-***
+```
 
-### **SharePoint.Tables**
+### SharePoint.Tables
 
 **Syntax**
-
 ```m
 SharePoint.Tables(siteUrl as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+SharePoint.Tables("https://contoso.sharepoint.com/sites/Finance")
+```
+**Example**
+```m
+SharePoint.Tables("https://contoso.sharepoint.com/sites/Finance")
 
 
-***
+```
 
-### **SharePoint.Lists**
+### SharePoint.Lists
 
 **Syntax**
-
 ```m
 SharePoint.Lists(siteUrl as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+SharePoint.Lists("https://contoso.sharepoint.com/sites/Finance")
+```
+**Example**
+```m
+SharePoint.Lists("https://contoso.sharepoint.com/sites/Finance")
 
 
-***
+```
 
-### **SharePoint.ContentsWithPath**
+### SharePoint.ContentsWithPath
 
 **Syntax**
-
 ```m
 SharePoint.ContentsWithPath(siteUrl as text, path as text) as table
 ```
+**Syntax + Placeholder**
+```m
+SharePoint.ContentsWithPath("https://contoso.sharepoint.com", "/sites/Finance/Shared Documents")
+```
+**Example**
+```m
+SharePoint.ContentsWithPath("https://contoso.sharepoint.com", "/sites/Finance/Shared Documents")
 
 
-***
+```
 
-### **Folder.Files**
+### Folder.Files
 
 **Syntax**
-
 ```m
 Folder.Files(path as text) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Folder.Files("C:\Data")
 ```
+**Example**
+```m
+Folder.Files("C:\Data")
 
 
-***
+```
 
-### **Folder.Contents**
+### Folder.Contents
 
 **Syntax**
-
 ```m
 Folder.Contents(path as text) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Folder.Contents("C:\Data")
 ```
+**Example**
+```m
+Folder.Contents("C:\Data")
 
 
-***
+```
 
-### **File.Contents**
+### File.Contents
 
 **Syntax**
-
 ```m
 File.Contents(path as text) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 File.Contents("C:\Data\sales.csv")
 ```
+**Example**
+```m
+File.Contents("C:\Data\sales.csv")
 
 
-***
+```
 
-### **Hdfs.Contents**
+### Hdfs.Contents
 
 **Syntax**
-
 ```m
 Hdfs.Contents(path as text) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Hdfs.Contents("/user/data")
 ```
+**Example**
+```m
+Hdfs.Contents("/user/data")
 
 
-***
+```
 
-### **Hadoop.FileSystem**
+### Hadoop.FileSystem
 
 **Syntax**
-
 ```m
 Hadoop.FileSystem(contents as any) as table
 ```
+**Syntax + Placeholder**
+```m
+Hadoop.FileSystem(Hdfs.Contents("/"))
+```
+**Example**
+```m
+Hadoop.FileSystem(Hdfs.Contents("/user"))
 
 
-***
+```
 
-### **Python.Execute**
+### Python.Execute
 
 **Syntax**
-
 ```m
 Python.Execute(script as text, optional inputs as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
-Python.Execute("import pandas as pd; df = pd.DataFrame({'A':[1,2]})")
+Python.Execute("import pandas as pd; df=pd.DataFrame({'A':})", [dfInput=\#table({"A"},{{1},{2}})])
+```
+**Example**
+```m
+Python.Execute("import pandas as pd; df = pd.DataFrame({'A':})")
+
+
 ```
 
-
-***
-
-### **RScript.Evaluate**
+### RScript.Evaluate
 
 **Syntax**
-
 ```m
 RScript.Evaluate(script as text, optional inputs as record) as table
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 RScript.Evaluate("data.frame(A=c(1,2), B=c(3,4))")
 ```
+**Example**
+```m
+RScript.Evaluate("data.frame(A=c(1,2), B=c(3,4))")
 
 
-***
-### **AzureStorage.BlobContents**
+```
+
+### AzureStorage.BlobContents
 
 **Syntax**
-
 ```m
 AzureStorage.BlobContents(url as text) as binary
 ```
+**Syntax + Placeholder**
+```m
+AzureStorage.BlobContents("https://account.blob.core.windows.net/container/file.csv")
+```
+**Example**
+```m
+AzureStorage.BlobContents("https://account.blob.core.windows.net/container/file.csv")
 
 
-***
+```
 
-### **AzureStorage.Contents**
+### AzureStorage.Contents
 
 **Syntax**
-
 ```m
 AzureStorage.Contents(account as text) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureStorage.Contents("account")
+```
+**Example**
+```m
+AzureStorage.Contents("account")
 
 
-***
+```
 
-### **AzureTables.Contents**
+### AzureTables.Contents
 
 **Syntax**
-
 ```m
 AzureTables.Contents(account as text) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureTables.Contents("account")
+```
+**Example**
+```m
+AzureTables.Contents("account")
 
 
-***
+```
 
-### **AzureTable.Storage**
+### AzureTable.Storage
 
 **Syntax**
-
 ```m
 AzureTable.Storage(account as text, table as text) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureTable.Storage("account", "MyTable")
+```
+**Example**
+```m
+AzureTable.Storage("account", "MyTable")
 
 
-***
+```
 
-### **AzureSQL.Database**
+### AzureSQL.Database
 
 **Syntax**
-
 ```m
 AzureSQL.Database(server as text, database as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureSQL.Database("myserver.database.windows.net", "SalesDB")
+```
+**Example**
+```m
+AzureSQL.Database("myserver.database.windows.net", "SalesDB")
 
 
-***
+```
 
-### **AzureDataLake.Contents**
+### AzureDataLake.Contents
 
 **Syntax**
-
 ```m
 AzureDataLake.Contents(account as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureDataLake.Contents("accountName")
+```
+**Example**
+```m
+AzureDataLake.Contents("accountName")
 
 
-***
+```
 
-### **AzureDataLake.Files**
+### AzureDataLake.Files
 
 **Syntax**
-
 ```m
 AzureDataLake.Files(account as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureDataLake.Files("accountName")
+```
+**Example**
+```m
+AzureDataLake.Files("accountName")
 
 
-***
+```
 
-### **AzureDataExplorer.Contents**
+### AzureDataExplorer.Contents
 
 **Syntax**
-
 ```m
 AzureDataExplorer.Contents(cluster as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureDataExplorer.Contents("https://cluster.region.kusto.windows.net")
+```
+**Example**
+```m
+AzureDataExplorer.Contents("https://cluster.region.kusto.windows.net")
 
 
-***
+```
 
-### **AzureCostManagement.Tables**
+### AzureCostManagement.Tables
 
 **Syntax**
-
 ```m
 AzureCostManagement.Tables(scope as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureCostManagement.Tables("/subscriptions/<subId>")
+```
+**Example**
+```m
+AzureCostManagement.Tables("/subscriptions/<subId>")
 
 
-***
+```
 
-### **AzureDevOps.AccountContents**
+### AzureDevOps.AccountContents
 
 **Syntax**
-
 ```m
 AzureDevOps.AccountContents(organization as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+AzureDevOps.AccountContents("myorg")
+```
+**Example**
+```m
+AzureDevOps.AccountContents("myorg")
 
 
-***
+```
 
-### **AzureDevOps.Contents**
+### AzureDevOps.Contents
 
 **Syntax**
-
 ```m
 AzureDevOps.Contents(organization as text, optional options as record) as table
 ```
-
-
-***
-
-### **MySql.Database**
-
-**Syntax**
-
+**Syntax + Placeholder**
 ```m
-MySql.Database(server as text, database as text, optional options as record) as table
+AzureDevOps.Contents("myorg")
+```
+**Example**
+```m
+AzureDevOps.Contents("myorg")
+
+
 ```
 
-
-***
-
-### **PostgreSQL.Database**
+### PowerBI.Dataflows
 
 **Syntax**
-
-```m
-PostgreSQL.Database(server as text, database as text, optional options as record) as table
-```
-
-
-***
-
-### **Teradata.Database**
-
-**Syntax**
-
-```m
-Teradata.Database(server as text, optional options as record) as table
-```
-
-
-***
-
-### **Snowflake.Databases**
-
-**Syntax**
-
-```m
-Snowflake.Databases(account as text, optional options as record) as table
-```
-
-
-***
-
-### **Snowflake.Database**
-
-**Syntax**
-
-```m
-Snowflake.Database(account as text, database as text, optional options as record) as table
-```
-
-
-***
-
-### **GoogleBigQuery.Database**
-
-**Syntax**
-
-```m
-GoogleBigQuery.Database(optional options as record) as table
-```
-
-
-***
-
-### **GoogleSheets.Contents**
-
-**Syntax**
-
-```m
-GoogleSheets.Contents(url as text, optional options as record) as table
-```
-
-
-***
-
-### **PowerBI.Dataflows**
-
-**Syntax**
-
 ```m
 PowerBI.Dataflows(optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+PowerBI.Dataflows()
+```
+**Example**
+```m
+PowerBI.Dataflows()
 
 
-***
+```
 
-### **PowerPlatform.Dataflows**
+### PowerPlatform.Dataflows
 
 **Syntax**
-
 ```m
 PowerPlatform.Dataflows(optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+PowerPlatform.Dataflows()
+```
+**Example**
+```m
+PowerPlatform.Dataflows()
 
 
-***
+```
 
-### **PowerBI.Datamarts**
+### PowerBI.Datamarts
 
 **Syntax**
-
 ```m
 PowerBI.Datamarts(optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+PowerBI.Datamarts()
+```
+**Example**
+```m
+PowerBI.Datamarts()
 
 
-***
+```
 
-### **Salesforce.Data / Salesforce.Objects / Salesforce.Reports / Salesforce.Query**
-
-- `Salesforce.Data()` – returns Salesforce data
-- `Salesforce.Objects()` – returns list of objects
-- `Salesforce.Reports()` – returns list of reports
-- `Salesforce.Query(soql as text)` – runs a SOQL query
-
-***
-
-### **Dynamics365BusinessCentral.Contents**
+### Salesforce.Data / Salesforce.Objects / Salesforce.Reports / Salesforce.Query
 
 **Syntax**
+```m
+Salesforce.Data() as table
+Salesforce.Objects() as table
+Salesforce.Reports() as table
+Salesforce.Query(soql as text) as table
+- Placeholders:
+Salesforce.Data()
+Salesforce.Objects()
+Salesforce.Reports()
+Salesforce.Query("SELECT Id, Name FROM Account")
+- Examples:
+Salesforce.Objects()
+Salesforce.Query("SELECT Id, Name FROM Contact LIMIT 10")
 
+
+```
+
+### Dynamics365BusinessCentral.Contents
+
+**Syntax**
 ```m
 Dynamics365BusinessCentral.Contents(url as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+Dynamics365BusinessCentral.Contents("https://api.businesscentral.dynamics.com/v2.0/tenant/sandbox/api/v2.0")
+```
+**Example**
+```m
+Dynamics365BusinessCentral.Contents("https://api.businesscentral.dynamics.com/v2.0/tenant/production/api/v2.0")
 
 
-***
+```
 
-### **Dynamics365.Contents**
+### Dynamics365.Contents
 
 **Syntax**
-
 ```m
 Dynamics365.Contents(url as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+Dynamics365.Contents("https://org.crm.dynamics.com")
+```
+**Example**
+```m
+Dynamics365.Contents("https://org.crm.dynamics.com")
 
 
-***
+```
 
-### **CommonDataService.Database**
+### CommonDataService.Database
 
 **Syntax**
-
 ```m
 CommonDataService.Database(url as text, optional options as record) as table
 ```
+**Syntax + Placeholder**
+```m
+CommonDataService.Database("https://org.crm.dynamics.com")
+```
+**Example**
+```m
+CommonDataService.Database("https://org.crm.dynamics.com")
 
 
-***
+```
 
-### **Dataverse.Contents**
+### Dataverse.Contents
 
 **Syntax**
-
 ```m
 Dataverse.Contents(url as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+Dataverse.Contents("https://org.crm.dynamics.com")
+```
+**Example**
+```m
+Dataverse.Contents("https://org.crm.dynamics.com")
+
+
+```
+
+### MySql.Database
+
+**Syntax**
+```m
+MySql.Database(server as text, database as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+MySql.Database("localhost", "SalesDB")
+```
+**Example**
+```m
+MySql.Database("server", "db")
+
+
+```
+
+### PostgreSQL.Database
+
+**Syntax**
+```m
+PostgreSQL.Database(server as text, database as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+PostgreSQL.Database("localhost", "SalesDB")
+```
+**Example**
+```m
+PostgreSQL.Database("server", "db")
+
+
+```
+
+### Teradata.Database
+
+**Syntax**
+```m
+Teradata.Database(server as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+Teradata.Database("tdserver")
+```
+**Example**
+```m
+Teradata.Database("tdserver")
+
+
+```
+
+### Snowflake.Databases
+
+**Syntax**
+```m
+Snowflake.Databases(account as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+Snowflake.Databases("myaccount")
+```
+**Example**
+```m
+Snowflake.Databases("myaccount")
+
+
+```
+
+### Snowflake.Database
+
+**Syntax**
+```m
+Snowflake.Database(account as text, database as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+Snowflake.Database("myaccount", "SALES")
+```
+**Example**
+```m
+Snowflake.Database("myaccount", "SALES")
+
+
+```
+
+### GoogleBigQuery.Database
+
+**Syntax**
+```m
+GoogleBigQuery.Database(optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+GoogleBigQuery.Database()
+```
+**Example**
+```m
+GoogleBigQuery.Database()
+
+
+```
+
+### GoogleSheets.Contents
+
+**Syntax**
+```m
+GoogleSheets.Contents(url as text, optional options as record) as table
+```
+**Syntax + Placeholder**
+```m
+GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/<id>/edit")
+```
+**Example**
+```m
+GoogleSheets.Contents("https://docs.google.com/spreadsheets/d/<id>/edit")
+
 ```
 
 
@@ -9963,203 +10180,173 @@ Dataverse.Contents(url as text, optional options as record) as table
 
 ***
 
-### **Binary.Buffer**
+```
+
+### Binary.Buffer
 
 **Syntax**
-
 ```m
 Binary.Buffer(binary as binary) as binary
 ```
-
-**Placeholder**
-
+**Syntax + Placeholder**
 ```m
 Binary.Buffer(File.Contents("C:\img.png"))
 ```
-
 **Example**
-
 ```m
 Binary.Buffer(File.Contents("C:\Data\image.png"))
-// Forces full file into memory
+
+
 ```
 
-
-***
-
-### **Binary.Combine**
+### Binary.Combine
 
 **Syntax**
-
 ```m
 Binary.Combine(binaries as list) as binary
 ```
-
+**Syntax + Placeholder**
+```m
+Binary.Combine({Text.ToBinary("A"), Text.ToBinary("B")})
+```
 **Example**
-
 ```m
 Binary.Combine({Text.ToBinary("Hello"), Text.ToBinary("World")})
-// Output binary representing "HelloWorld"
+
+
 ```
 
-
-***
-
-### **Binary.From**
+### Binary.From
 
 **Syntax**
-
 ```m
 Binary.From(value as any, optional options as record) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.From(123)
-// Returns binary representation of number
+```
+**Example**
+```m
+Binary.From(123)
+
+
 ```
 
-
-***
-
-### **Binary.FromText**
+### Binary.FromText
 
 **Syntax**
-
 ```m
 Binary.FromText(text as text, optional encoding as number) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.FromText("SGVsbG8=", BinaryEncoding.Base64)
-// Decodes base64 string to binary
+```
+**Example**
+```m
+Binary.FromText("SGVsbG8=", BinaryEncoding.Base64)
+
+
 ```
 
-
-***
-
-### **Binary.ToText**
+### Binary.ToText
 
 **Syntax**
-
 ```m
 Binary.ToText(binary as binary, optional encoding as number) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.ToText(Text.ToBinary("Power"), BinaryEncoding.Base64)
-// "UG93ZXI="
+```
+**Example**
+```m
+Binary.ToText(Text.ToBinary("Power"), BinaryEncoding.Base64)
+
+
 ```
 
-
-***
-
-### **Binary.Length**
+### Binary.Length
 
 **Syntax**
-
 ```m
 Binary.Length(binary as binary) as number
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.Length(Text.ToBinary("Test"))
-// Output: 4
+```
+**Example**
+```m
+Binary.Length(Text.ToBinary("Test"))
+
+
 ```
 
-
-***
-
-### **Binary.Range**
+### Binary.Range
 
 **Syntax**
-
 ```m
 Binary.Range(binary as binary, offset as number, count as number) as binary
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.Range(Text.ToBinary("abcdef"), 2, 3)
-// "cde"
+```
+**Example**
+```m
+Binary.Range(Text.ToBinary("abcdef"), 2, 3)
+
+
 ```
 
-
-***
-
-### **Binary.Split**
+### Binary.Split
 
 **Syntax**
-
 ```m
 Binary.Split(binary as binary, size as number) as list
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.Split(Text.ToBinary("abcdef"), 2)
-// Output: { "ab","cd","ef" }
+```
+**Example**
+```m
+Binary.Split(Text.ToBinary("abcdef"), 2)
+
+
 ```
 
-
-***
-
-### **Binary.ToList**
+### Binary.ToList
 
 **Syntax**
-
 ```m
 Binary.ToList(binary as binary) as list
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Binary.ToList(Text.ToBinary("AB"))
-// {65,66}
 ```
-
-
-***
-
-### **Binary.Compress**
-
-**Syntax**
-
-```m
-Binary.Compress(binary as binary, compressionType as number) as binary
-```
-
 **Example**
-
 ```m
-Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate)
+Binary.ToList(Text.ToBinary("AB"))
+
+
 ```
 
+### Binary.Compress
 
-***
+- See earlier above (already provided)
 
-### **Binary.Decompress**
 
-**Syntax**
-
-```m
-Binary.Decompress(binary as binary, compressionType as number) as binary
 ```
 
-**Example**
+### Binary.Decompress
 
-```m
-Binary.Decompress(Binary.Compress(Text.ToBinary("Hello"), Compression.Deflate), Compression.Deflate)
+- See earlier above (already provided)
+
+
 ```
 
 
@@ -10170,182 +10357,281 @@ These describe **how to read/write binary streams**.
 
 ***
 
-### **BinaryFormat.Binary**
+```
 
+### BinaryFormat.Binary
+
+**Syntax**
 ```m
 BinaryFormat.Binary(length as number)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 BinaryFormat.Binary(5)
-// Reads 5 bytes
 ```
-
-
-***
-
-### **BinaryFormat.Byte**
-
-```m
-BinaryFormat.Byte
-```
-
 **Example**
-
 ```m
-BinaryFormat.Byte
-// Reads 1 unsigned byte
+BinaryFormat.Binary(5)
+
+
 ```
 
+### BinaryFormat.Byte
 
-***
+**Syntax**
+```m
+BinaryFormat.Byte
+```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Byte
+```
+**Example**
+```m
+BinaryFormat.Byte
 
-### **BinaryFormat.SignedInteger8**
 
+```
+
+### BinaryFormat.SignedInteger8 / UnsignedInteger8
+
+**Syntax**
 ```m
 BinaryFormat.SignedInteger8
+BinaryFormat.UnsignedInteger8
 ```
-
-
-### **BinaryFormat.UnsignedInteger8**
-
+**Syntax + Placeholder**
 ```m
 BinaryFormat.UnsignedInteger8
 ```
-
-
-***
-
-### **BinaryFormat.SignedInteger16**
-
+**Example**
 ```m
-BinaryFormat.SignedInteger16
+BinaryFormat.SignedInteger8
+
+
 ```
 
+### BinaryFormat.SignedInteger16 / UnsignedInteger16
 
-### **BinaryFormat.UnsignedInteger16**
-
+**Syntax**
+```m
+BinaryFormat.SignedInteger16
+BinaryFormat.UnsignedInteger16
+```
+**Syntax + Placeholder**
 ```m
 BinaryFormat.UnsignedInteger16
 ```
-
-
-***
-
-### **BinaryFormat.SignedInteger32 / 64, UnsignedInteger32 / 64**
-
 **Example**
+```m
+BinaryFormat.SignedInteger16
 
+
+```
+
+### BinaryFormat.SignedInteger32/64, UnsignedInteger32/64
+
+**Syntax**
+```m
+BinaryFormat.SignedInteger32, BinaryFormat.SignedInteger64
+BinaryFormat.UnsignedInteger32, BinaryFormat.UnsignedInteger64
+```
+**Syntax + Placeholder**
 ```m
 BinaryFormat.SignedInteger32
 ```
+**Example**
+```m
+BinaryFormat.SignedInteger32
 
 
-***
+```
 
-### **BinaryFormat.Single / Double**
+### BinaryFormat.Single / Double
 
+**Syntax**
 ```m
 BinaryFormat.Single
 BinaryFormat.Double
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Double
+```
+**Example**
+```m
+BinaryFormat.Single
 
 
-***
+```
 
-### **BinaryFormat.Text**
+### BinaryFormat.Text
 
+**Syntax**
 ```m
 BinaryFormat.Text(encoding as number)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 BinaryFormat.Text(BinaryEncoding.Utf8)
 ```
+**Example**
+```m
+BinaryFormat.Text(BinaryEncoding.Utf8)
 
 
-***
+```
 
-### **BinaryFormat.Null**
+### BinaryFormat.Null
 
+**Syntax**
 ```m
 BinaryFormat.Null
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Null
+```
+**Example**
+```m
+BinaryFormat.Null
 
 
-***
+```
 
-### **BinaryFormat.Choice**
+### BinaryFormat.Choice
 
+**Syntax**
 ```m
 BinaryFormat.Choice(selector as function, choices as list)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Choice((b)=> if b<>null then 1 else 0, {BinaryFormat.Byte, BinaryFormat.Binary(4)})
+```
+**Example**
+```m
+BinaryFormat.Choice((x)=> if x=0 then 0 else 1, {BinaryFormat.Byte, BinaryFormat.Binary(2)})
 
 
-***
+```
 
-### **BinaryFormat.ChoiceRestart**
+### BinaryFormat.ChoiceRestart
 
+**Syntax**
 ```m
 BinaryFormat.ChoiceRestart(selector as function, choices as list)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.ChoiceRestart((_)=>0, {BinaryFormat.Byte})
+```
+**Example**
+```m
+BinaryFormat.ChoiceRestart((_)=>0, {BinaryFormat.Byte})
 
 
-***
+```
 
-### **BinaryFormat.List**
+### BinaryFormat.List
 
+**Syntax**
 ```m
 BinaryFormat.List(elementFormat as function, count as any)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.List(BinaryFormat.Byte, 3)
+```
+**Example**
+```m
+BinaryFormat.List(BinaryFormat.Byte, 3)
 
 
-***
+```
 
-### **BinaryFormat.Record**
+### BinaryFormat.Record
 
+**Syntax**
 ```m
 BinaryFormat.Record(fields as record)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Record([A=BinaryFormat.Byte, B=BinaryFormat.SignedInteger16])
+```
+**Example**
+```m
+BinaryFormat.Record([A=BinaryFormat.Byte, B=BinaryFormat.SignedInteger16])
 
 
-***
+```
 
-### **BinaryFormat.Length**
+### BinaryFormat.Length
 
+**Syntax**
 ```m
 BinaryFormat.Length(format as function, length as number)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Length(BinaryFormat.Binary(10), 5)
+```
+**Example**
+```m
+BinaryFormat.Length(BinaryFormat.Binary(10), 5)
 
 
-***
+```
 
-### **BinaryFormat.ByteOrder**
+### BinaryFormat.ByteOrder
 
+**Syntax**
 ```m
 BinaryFormat.ByteOrder(format as function, byteOrder as number)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.ByteOrder(BinaryFormat.SignedInteger16, ByteOrder.LittleEndian)
+```
+**Example**
+```m
+BinaryFormat.ByteOrder(BinaryFormat.SignedInteger32, ByteOrder.BigEndian)
 
 
-***
+```
 
-### **BinaryFormat.Group**
+### BinaryFormat.Group
 
+**Syntax**
 ```m
 BinaryFormat.Group(format as function)
 ```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Group(BinaryFormat.Record([A=BinaryFormat.Byte]))
+```
+**Example**
+```m
+BinaryFormat.Group(BinaryFormat.Record([A=BinaryFormat.Byte]))
 
 
-***
+```
 
-### **BinaryFormat.Repeat**
+### BinaryFormat.Repeat
 
+**Syntax**
 ```m
 BinaryFormat.Repeat(format as function, count as number)
+```
+**Syntax + Placeholder**
+```m
+BinaryFormat.Repeat(BinaryFormat.Byte, 4)
+```
+**Example**
+```m
+BinaryFormat.Repeat(BinaryFormat.Byte, 4)
+
 ```
 
 
@@ -10355,35 +10641,56 @@ BinaryFormat.Repeat(format as function, count as number)
 
 ***
 
-### **Combiner.CombineTextByDelimiter**
+```
 
+### Combiner.CombineTextByDelimiter
+
+**Syntax**
 ```m
 Combiner.CombineTextByDelimiter(delimiter as text, optional quoteStyle as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Combiner.CombineTextByDelimiter(",")({"A","B","C"})
-// "A,B,C"
+```
+**Example**
+```m
+Combiner.CombineTextByDelimiter(",")({"A","B","C"})
+
+
 ```
 
+### Combiner.CombineTextByEachDelimiter
 
-***
-
-### **Combiner.CombineTextByEachDelimiter**
-
+**Syntax**
 ```m
 Combiner.CombineTextByEachDelimiter(delimiters as list, quoteStyle as any, escape as any)
 ```
+**Syntax + Placeholder**
+```m
+Combiner.CombineTextByEachDelimiter({",",";"}, QuoteStyle.None, "\\")({"A,B","C;D"})
+```
+**Example**
+```m
+Combiner.CombineTextByEachDelimiter({","}, QuoteStyle.None, null)({"A","B","C"})
 
 
-***
+```
 
-### **Combiner.CombineTextByLengths**
+### Combiner.CombineTextByLengths
 
+**Syntax**
 ```m
 Combiner.CombineTextByLengths(lengths as list)
+```
+**Syntax + Placeholder**
+```m
+Combiner.CombineTextByLengths({2,3})({"AB","CDE"})
+```
+**Example**
+```m
+Combiner.CombineTextByLengths({1,2})({"A","BC"})
+
 ```
 
 
@@ -10393,48 +10700,58 @@ Combiner.CombineTextByLengths(lengths as list)
 
 ***
 
-### **Comparer.Equals**
+```
 
+### Comparer.Equals
+
+**Syntax**
 ```m
 Comparer.Equals(a as any, b as any) as logical
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Comparer.Equals("A","a")
-// false (case sensitive)
+```
+**Example**
+```m
+Comparer.Equals("A","a")
+
+
 ```
 
+### Comparer.FromCulture
 
-***
-
-### **Comparer.FromCulture**
-
+**Syntax**
 ```m
 Comparer.FromCulture(culture as text, ignoreCase as logical)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Comparer.FromCulture("en-US", true)
 ```
-
-
-***
-
-### **Comparer.Ordinal**
-
+**Example**
 ```m
-Comparer.Ordinal
+Comparer.FromCulture("en-US", true)
+
+
 ```
 
+### Comparer.Ordinal / Comparer.OrdinalIgnoreCase
 
-### **Comparer.OrdinalIgnoreCase**
-
+**Syntax**
+```m
+Comparer.Ordinal
+Comparer.OrdinalIgnoreCase
+```
+**Syntax + Placeholder**
 ```m
 Comparer.OrdinalIgnoreCase
+```
+**Example**
+```m
+Comparer.Ordinal
+
+
 ```
 
 
@@ -10444,63 +10761,72 @@ Comparer.OrdinalIgnoreCase
 
 ***
 
-### **Lines.FromBinary**
+```
 
+### Lines.FromBinary
+
+**Syntax**
 ```m
 Lines.FromBinary(binary as binary, optional encoding as any) as list
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Lines.FromBinary(File.Contents("C:\Data\data.txt"))
 ```
+**Example**
+```m
+Lines.FromBinary(File.Contents("C:\Data\data.txt"))
 
 
-***
+```
 
-### **Lines.ToBinary**
+### Lines.ToBinary
 
+**Syntax**
 ```m
 Lines.ToBinary(lines as list, optional encoding as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Lines.ToBinary({"Line1","Line2"})
 ```
+**Example**
+```m
+Lines.ToBinary({"Line1","Line2"})
 
 
-***
+```
 
-### **Lines.FromText**
+### Lines.FromText
 
+**Syntax**
 ```m
 Lines.FromText(text as text, optional lineSeparator as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Lines.FromText("A;B;C",";")
-// {"A","B","C"}
+```
+**Example**
+```m
+Lines.FromText("A;B;C",";")
+
+
 ```
 
+### Lines.ToText
 
-***
-
-### **Lines.ToText**
-
+**Syntax**
 ```m
 Lines.ToText(lines as list, optional lineSeparator as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Lines.ToText({"A","B","C"}, "|")
-// "A|B|C"
+```
+**Example**
+```m
+Lines.ToText({"A","B","C"}, "|")
 ```
 
 
@@ -10510,25 +10836,40 @@ Lines.ToText({"A","B","C"}, "|")
 
 ***
 
-### **Replacer.ReplaceText**
+```
 
+### Replacer.ReplaceText
+
+**Syntax**
 ```m
 Replacer.ReplaceText(old as text, new as text)
 ```
+**Syntax + Placeholder**
+```m
+Replacer.ReplaceText("old","new")
+```
+**Example**
+```m
+Table.ReplaceValue(\#table({"A"},{{"Hello"}}),"Hello","World", Replacer.ReplaceText, {"A"})
 
 
-### **Replacer.ReplaceValue**
+```
 
+### Replacer.ReplaceValue
+
+**Syntax**
 ```m
 Replacer.ReplaceValue(old as any, new as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
-Table.ReplaceValue(#table({"A"},{{"Hello"}}),
-    "Hello","World", Replacer.ReplaceText, {"A"})
-// Output: {{"World"}}
+Replacer.ReplaceValue(1, 0)
+```
+**Example**
+```m
+Table.ReplaceValue(\#table({"A"},{{1}}),1,0, Replacer.ReplaceValue, {"A"})
+
+
 ```
 
 
@@ -10538,78 +10879,123 @@ Table.ReplaceValue(#table({"A"},{{"Hello"}}),
 
 ***
 
-### **Splitter.SplitTextByDelimiter**
+```
 
+### Splitter.SplitTextByDelimiter
+
+**Syntax**
 ```m
 Splitter.SplitTextByDelimiter(delimiter as text, optional quoteStyle as any, optional startAt as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Splitter.SplitTextByDelimiter(",")("A,B,C")
-// {"A","B","C"}
+```
+**Example**
+```m
+Splitter.SplitTextByDelimiter(",")("A,B,C")
+
+
 ```
 
+### Splitter.SplitTextByEachDelimiter
 
-***
-
-### **Splitter.SplitTextByEachDelimiter**
-
+**Syntax**
 ```m
 Splitter.SplitTextByEachDelimiter(delimiters as list, optional quoteStyle as any, optional startAt as any, optional comparer as any)
 ```
+**Syntax + Placeholder**
+```m
+Splitter.SplitTextByEachDelimiter({",",";"}, QuoteStyle.None)( "A;B,C")
+```
+**Example**
+```m
+Splitter.SplitTextByEachDelimiter({","}, QuoteStyle.None)("A,B,C")
 
 
-***
+```
 
-### **Splitter.SplitTextByWhitespace**
+### Splitter.SplitTextByWhitespace
 
+**Syntax**
 ```m
 Splitter.SplitTextByWhitespace()
 ```
+**Syntax + Placeholder**
+```m
+Splitter.SplitTextByWhitespace()("A B  C")
+```
+**Example**
+```m
+Splitter.SplitTextByWhitespace()("A B C")
 
 
-***
+```
 
-### **Splitter.SplitTextByCharacterTransition**
+### Splitter.SplitTextByCharacterTransition
 
+**Syntax**
 ```m
 Splitter.SplitTextByCharacterTransition(accept as function, reject as function)
 ```
+**Syntax + Placeholder**
+```m
+Splitter.SplitTextByCharacterTransition(Character.IsLetter, Character.IsDigit)("Ab12Cd")
+```
+**Example**
+```m
+Splitter.SplitTextByCharacterTransition(Character.IsLetter, Character.IsDigit)("Ab12")
 
 
-***
+```
 
-### **Splitter.SplitTextByLengths**
+### Splitter.SplitTextByLengths
 
+**Syntax**
 ```m
 Splitter.SplitTextByLengths(lengths as list)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Splitter.SplitTextByLengths({2,3})("ABCDE")
-// {"AB","CDE"}
+```
+**Example**
+```m
+Splitter.SplitTextByLengths({2,3})("ABCDE")
+
+
 ```
 
+### Splitter.SplitTextByPositions
 
-***
-
-### **Splitter.SplitTextByPositions**
-
+**Syntax**
 ```m
 Splitter.SplitTextByPositions(positions as list)
 ```
+**Syntax + Placeholder**
+```m
+Splitter.SplitTextByPositions({2,4})("ABCDEFG")
+```
+**Example**
+```m
+Splitter.SplitTextByPositions({2,4})("ABCDEFG")
 
 
-***
+```
 
-### **Splitter.SplitTextByRanges**
+### Splitter.SplitTextByRanges
 
+**Syntax**
 ```m
 Splitter.SplitTextByRanges(ranges as list)
+```
+**Syntax + Placeholder**
+```m
+Splitter.SplitTextByRanges({{0,2},{2,3}})("ABCDE")
+```
+**Example**
+```m
+Splitter.SplitTextByRanges({{0,2},{2,3}})("ABCDE")
 ```
 
 
@@ -10619,65 +11005,73 @@ Splitter.SplitTextByRanges(ranges as list)
 
 ***
 
-### **Uri.Parts**
+```
 
+### Uri.Parts
+
+**Syntax**
 ```m
 Uri.Parts(uri as text) as record
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Uri.Parts("https://example.com/page?x=1")
-// [Scheme="https", Host="example.com", Path="/page", Query=[x="1"]]
+```
+**Example**
+```m
+Uri.Parts("https://example.com/page?x=1")
+
+
 ```
 
+### Uri.BuildQueryString
 
-***
-
-### **Uri.BuildQueryString**
-
+**Syntax**
 ```m
 Uri.BuildQueryString(record as record) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Uri.BuildQueryString([x=1, y=2])
-// "x=1&y=2"
+```
+**Example**
+```m
+Uri.BuildQueryString([x=1, y=2])
+
+
 ```
 
+### Uri.EscapeDataString
 
-***
-
-### **Uri.EscapeDataString**
-
+**Syntax**
 ```m
 Uri.EscapeDataString(text as text) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Uri.EscapeDataString("a b")
-// "a%20b"
+```
+**Example**
+```m
+Uri.EscapeDataString("a b")
+
+
 ```
 
+### Uri.UnescapeDataString
 
-***
-
-### **Uri.UnescapeDataString**
-
+**Syntax**
 ```m
 Uri.UnescapeDataString(text as text) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Uri.UnescapeDataString("a%20b")
-// "a b"
+```
+**Example**
+```m
+Uri.UnescapeDataString("a%20b")
+
 ```
 
 
@@ -10687,212 +11081,208 @@ Uri.UnescapeDataString("a%20b")
 
 ***
 
-### **Value.Type**
+```
 
+### Value.Type
+
+**Syntax**
 ```m
 Value.Type(value as any) as type
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.Type("Hello")
-// type text
+```
+**Example**
+```m
+Value.Type("Hello")
+
+
 ```
 
+### Value.ReplaceType
 
-***
-
-### **Value.ReplaceType**
-
+**Syntax**
 ```m
 Value.ReplaceType(value as any, type as type) as any
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.ReplaceType(123, type text)
-// Treats 123 as type text
 ```
-
-
-***
-
-### **Value.Metadata**
-
-```m
-Value.Metadata(value as any) as record
-```
-
 **Example**
-
 ```m
-Value.Metadata(123)
+Value.ReplaceType(123, type text)
+
+
 ```
 
+### Value.Metadata
 
-***
+- See earlier (provided)
 
-### **Value.AddMetadata**
 
-```m
-Value.AddMetadata(value as any, metadata as record) as any
 ```
 
-**Example**
+### Value.AddMetadata
 
-```m
-Value.AddMetadata(42, [Source="User"])
-// 42 (with metadata)
+- See earlier (provided)
+
+
 ```
 
+### Value.Is
 
-***
-
-### **Value.Is**
-
+**Syntax**
 ```m
 Value.Is(value as any, type as type) as logical
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.Is(123, type number)
-// true
+```
+**Example**
+```m
+Value.Is(123, type number)
+
+
 ```
 
+### Value.As
 
-***
-
-### **Value.As**
-
+**Syntax**
 ```m
 Value.As(value as any, type as type) as any
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.As(123, type number)
-// 123
+```
+**Example**
+```m
+Value.As(123, type number)
+
+
 ```
 
+### Value.FromText
 
-***
-
-### **Value.FromText**
-
+**Syntax**
 ```m
 Value.FromText(text as text, optional culture as text) as any
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.FromText("123")
-// 123
+```
+**Example**
+```m
+Value.FromText("123")
+
+
 ```
 
+### Value.ToText
 
-***
-
-### **Value.ToText**
-
+**Syntax**
 ```m
 Value.ToText(value as any, optional format as any, optional culture as text) as text
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.ToText(123, "D4")
-// "0123"
+```
+**Example**
+```m
+Value.ToText(123, "D4")
+
+
 ```
 
+### Value.Compare
 
-***
-
-### **Value.Compare**
-
+**Syntax**
 ```m
 Value.Compare(a as any, b as any, optional comparer as any) as number
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.Compare(1,2)
-// -1
+```
+**Example**
+```m
+Value.Compare(1,2)
+
+
 ```
 
+### Value.Equals
 
-***
-
-### **Value.Equals**
-
+**Syntax**
 ```m
 Value.Equals(a as any, b as any, optional precision as any) as logical
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.Equals(3.1415, 3.1415)
-// true
+```
+**Example**
+```m
+Value.Equals(3.1415, 3.1415)
+
+
 ```
 
+### Value.NullableEquals
 
-***
-
-### **Value.NullableEquals**
-
+**Syntax**
 ```m
 Value.NullableEquals(a as any, b as any) as logical
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.NullableEquals(null, null)
-// true
+```
+**Example**
+```m
+Value.NullableEquals(null, null)
+
+
 ```
 
+### Value.ExpandRecord
 
-***
-
-### **Value.ExpandRecord**
-
+**Syntax**
 ```m
 Value.ExpandRecord(record as record) as list
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.ExpandRecord([a=1,b=2])
-// {1,2}
+```
+**Example**
+```m
+Value.ExpandRecord([a=1,b=2])
+
+
 ```
 
+### Value.ReplaceError
 
-***
-
-### **Value.ReplaceError**
-
+**Syntax**
 ```m
 Value.ReplaceError(value as any, replacement as any) as any
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Value.ReplaceError(try 1/0 otherwise null, -1)
-// -1
 ```
+**Example**
+```m
+Value.ReplaceError(try 1/0 otherwise null, -1)
 
 
-***
+```
 
 ***
 <section id="-expression--error--diagnostics"><h2>📂 Expression &amp; Error &amp; Diagnostics</h2></section>
@@ -10900,77 +11290,105 @@ Value.ReplaceError(try 1/0 otherwise null, -1)
 
 ***
 
-### **Expression.Evaluate**
+```
 
+### Expression.Evaluate
+
+**Syntax**
 ```m
 Expression.Evaluate(text as text, optional environment as record)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
 Expression.Evaluate("2+3")
-// 5
+```
+**Example**
+```m
+Expression.Evaluate("2+3")
+
+
 ```
 
+### Expression.Identifier
 
-***
-
-### **Expression.Identifier**
-
+**Syntax**
 ```m
 Expression.Identifier(name as text)
 ```
+**Syntax + Placeholder**
+```m
+Expression.Identifier("My Name")
+```
+**Example**
+```m
+Expression.Identifier("My Name")
 
 
-***
+```
 
-### **Expression.Constant**
+### Expression.Constant
 
+**Syntax**
 ```m
 Expression.Constant(value as any)
 ```
+**Syntax + Placeholder**
+```m
+Expression.Constant(42)
+```
+**Example**
+```m
+Expression.Constant(42)
 
 
-***
+```
 
-### **Error.Record**
+### Error.Record
 
+**Syntax**
 ```m
 Error.Record(reason as text, message as text, detail as any) as record
 ```
-
+**Syntax + Placeholder**
+```m
+Error.Record("Invalid", "Something went wrong", [Step="Load"])
+```
 **Example**
-
 ```m
 Error.Record("Error", "Message", "Details")
+
+
 ```
 
+### Error.Raise
 
-***
-
-### **Error.Raise**
-
+**Syntax**
 ```m
 Error.Raise(reason as text, message as text, optional detail as any) as none
 ```
-
-
-***
-
-### **Diagnostics.Trace**
-
+**Syntax + Placeholder**
 ```m
-Diagnostics.Trace(level as number, message as text, details as any) as any
+Error.Raise("InvalidOperation", "Bad input", [Input=null])
+```
+**Example**
+```m
+Error.Raise("Invalid", "No data")
+
+
 ```
 
+### Diagnostics.Trace
 
-***
+- See earlier
 
-### **Diagnostics.ActivityId**
 
-```m
-Diagnostics.ActivityId()
+```
+
+### Diagnostics.ActivityId
+
+- See earlier
+
+
 ```
 
 
@@ -10982,89 +11400,158 @@ Diagnostics.ActivityId()
 
 ***
 
-### **Table.SelectColumns**
+```
 
+### Table.SelectColumns
+
+**Syntax**
 ```m
 Table.SelectColumns(table as table, columns as any, optional missingField as any)
 ```
-
-**Example**
-
+**Syntax + Placeholder**
 ```m
-Table.SelectColumns(#table({"A","B"}, {{1,2},{3,4}}), {"A"})
-// Only A column
+Table.SelectColumns(\#table({"A","B"}, {{1,2}}), {"A"})
+```
+**Example**
+```m
+Table.SelectColumns(\#table({"A","B"}, {{1,2},{3,4}}), {"A"})
+
+
 ```
 
+### Table.RemoveColumns
 
-***
-
-### **Table.RemoveColumns**
-
+**Syntax**
 ```m
 Table.RemoveColumns(table as table, columns as list, optional missingField as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.RemoveColumns(\#table({"A","B"}, {{1,2}}), {"B"})
+```
+**Example**
+```m
+Table.RemoveColumns(\#table({"A","B"}, {{1,2},{3,4}}), {"B"})
 
 
-***
+```
 
-### **Table.RenameColumns**
+### Table.RenameColumns
 
+**Syntax**
 ```m
 Table.RenameColumns(table as table, renames as list, optional missingField as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.RenameColumns(\#table({"A"},{{1}}), {{"A","Alpha"}})
+```
+**Example**
+```m
+Table.RenameColumns(\#table({"A"},{{1}}), {{"A","Alpha"}})
 
 
-***
+```
 
-### **Table.ReorderColumns**
+### Table.ReorderColumns
 
+**Syntax**
 ```m
 Table.ReorderColumns(table as table, columns as list, optional missingField as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.ReorderColumns(\#table({"A","B"},{{1,2}}), {"B","A"})
+```
+**Example**
+```m
+Table.ReorderColumns(\#table({"A","B"},{{1,2}}), {"B","A"})
 
 
-***
+```
 
-### **Table.TransformColumns**
+### Table.TransformColumns
 
+**Syntax**
 ```m
 Table.TransformColumns(table as table, transformations as list, optional defaultTransformation as any, optional missingField as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.TransformColumns(\#table({"A"},{{"x"}}), {{"A", Text.Upper, type text}})
+```
+**Example**
+```m
+Table.TransformColumns(\#table({"A"},{{"x"}}), {{"A", Text.Upper, type text}})
 
 
-***
+```
 
-### **Table.TransformColumnTypes**
+### Table.TransformColumnTypes
 
+**Syntax**
 ```m
 Table.TransformColumnTypes(table as table, typeTransformations as list, optional culture as text, optional missingField as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.TransformColumnTypes(\#table({"A"},{{"1"}}), {{"A", Int64.Type}})
+```
+**Example**
+```m
+Table.TransformColumnTypes(\#table({"A"},{{"1"}}), {{"A", Int64.Type}})
 
 
-***
+```
 
-### **Table.SplitColumn**
+### Table.SplitColumn
 
+**Syntax**
 ```m
 Table.SplitColumn(table as table, column as text, splitter as function, optional newColumnNames as list, optional default as any, optional extraValues as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.SplitColumn(\#table({"Full"},{{"A,B"}}), "Full", Splitter.SplitTextByDelimiter(","), {"Col1","Col2"})
+```
+**Example**
+```m
+Table.SplitColumn(\#table({"Full"},{{"A,B"}}), "Full", Splitter.SplitTextByDelimiter(","), {"Col1","Col2"})
 
 
-***
+```
 
-### **Table.AddColumn**
+### Table.AddColumn
 
+**Syntax**
 ```m
 Table.AddColumn(table as table, newColumnName as text, columnGenerator as function, optional columnType as any)
 ```
+**Syntax + Placeholder**
+```m
+Table.AddColumn(\#table({"A"},{{1}}), "B", each [A]*2, Int64.Type)
+```
+**Example**
+```m
+Table.AddColumn(\#table({"A"},{{1},{2}}), "B", each [A]*2, Int64.Type)
 
 
-***
+```
 
-### **Table.AddIndexColumn**
+### Table.AddIndexColumn
 
+**Syntax**
 ```m
 Table.AddIndexColumn(table as table, newColumnName as text, optional initialValue as number, optional increment as number, optional columnType as any)
+```
+**Syntax + Placeholder**
+```m
+Table.AddIndexColumn(\#table({"A"},{{1},{2}}), "Index", 0, 1, Int64.Type)
+```
+**Example**
+```m
+Table.AddIndexColumn(\#table({"A"},{{1},{2}}), "Index", 0, 1, Int64.Type)
+
 ```
 
 
@@ -11076,59 +11563,140 @@ Table.AddIndexColumn(table as table, newColumnName as text, optional initialValu
 
 ***
 
-### **Text.Contains**
+```
 
+### Text.Contains
+
+**Syntax**
 ```m
 Text.Contains(text as text, substring as text, optional comparer as any) as logical
 ```
+**Syntax + Placeholder**
+```m
+Text.Contains("Hello","ell")
+```
+**Example**
+```m
+Text.Contains("Hello","ell")
 
 
-### **Text.StartsWith**
+```
 
+### Text.StartsWith
+
+**Syntax**
 ```m
 Text.StartsWith(text as text, substring as text, optional comparer as any)
 ```
+**Syntax + Placeholder**
+```m
+Text.StartsWith("Hello","He")
+```
+**Example**
+```m
+Text.StartsWith("Hello","He")
 
 
-### **Text.EndsWith**
+```
 
+### Text.EndsWith
+
+**Syntax**
 ```m
 Text.EndsWith(text as text, substring as text, optional comparer as any)
 ```
+**Syntax + Placeholder**
+```m
+Text.EndsWith("Hello","lo")
+```
+**Example**
+```m
+Text.EndsWith("Hello","lo")
 
 
-### **Text.Split**
+```
 
+### Text.Split
+
+**Syntax**
 ```m
 Text.Split(text as text, delimiter as text, optional quoteStyle as any)
 ```
+**Syntax + Placeholder**
+```m
+Text.Split("A,B,C", ",")
+```
+**Example**
+```m
+Text.Split("A,B,C", ",")
 
 
-### **Text.SplitAny**
+```
 
+### Text.SplitAny
+
+**Syntax**
 ```m
 Text.SplitAny(text as text, separators as any)
 ```
+**Syntax + Placeholder**
+```m
+Text.SplitAny("A;B,C", ",;")
+```
+**Example**
+```m
+Text.SplitAny("A;B,C", ",;")
 
 
-### **Text.SplitByLengths**
+```
 
+### Text.SplitByLengths
+
+**Syntax**
 ```m
 Text.SplitByLengths(text as text, lengths as list)
 ```
+**Syntax + Placeholder**
+```m
+Text.SplitByLengths("ABCDE", {2,3})
+```
+**Example**
+```m
+Text.SplitByLengths("ABCDE", {2,3})
 
 
-### **Text.SplitByPositions**
+```
 
+### Text.SplitByPositions
+
+**Syntax**
 ```m
 Text.SplitByPositions(text as text, positions as list)
 ```
+**Syntax + Placeholder**
+```m
+Text.SplitByPositions("ABCDEFG", {2,4})
+```
+**Example**
+```m
+Text.SplitByPositions("ABCDEFG", {2,4})
 
 
-### **Text.ReplaceEach**
+```
 
+### Text.ReplaceEach
+
+**Syntax**
 ```m
 Text.ReplaceEach(text as text, replacements as list)
+```
+**Syntax + Placeholder**
+```m
+Text.ReplaceEach("Hello World", {{"Hello","Hi"},{"World","All"}})
+```
+**Example**
+```m
+Text.ReplaceEach("Hello World", {{"Hello","Hi"}})
 ```
 
 
@@ -11140,31 +11708,72 @@ Text.ReplaceEach(text as text, replacements as list)
 
 ***
 
-### **Number.Round**
+```
 
+### Number.Round
+
+**Syntax**
 ```m
 Number.Round(number as nullable number, optional digits as nullable number, optional roundingMode as any)
 ```
+**Syntax + Placeholder**
+```m
+Number.Round(3.14159, 2)
+```
+**Example**
+```m
+Number.Round(3.14159, 2)
 
 
-### **Number.Divide**
+```
 
+### Number.Divide
+
+**Syntax**
 ```m
 Number.Divide(number as nullable number, divisor as nullable number, optional precision as any)
 ```
+**Syntax + Placeholder**
+```m
+Number.Divide(10, 3)
+```
+**Example**
+```m
+Number.Divide(10, 3)
 
 
-### **Number.ToText**
+```
 
+### Number.ToText
+
+**Syntax**
 ```m
 Number.ToText(number as nullable number, optional format as any, optional culture as text)
 ```
+**Syntax + Placeholder**
+```m
+Number.ToText(1234.56, "N2", "en-US")
+```
+**Example**
+```m
+Number.ToText(1234.56, "N2", "en-US")
 
 
-### **Number.FromText**
+```
 
+### Number.FromText
+
+**Syntax**
 ```m
 Number.FromText(text as text, optional culture as text)
+```
+**Syntax + Placeholder**
+```m
+Number.FromText("1,234.56", "en-US")
+```
+**Example**
+```m
+Number.FromText("1,234.56", "en-US")
 ```
 
 
@@ -11176,55 +11785,124 @@ Number.FromText(text as text, optional culture as text)
 
 ***
 
-### **Date.ToText**
+```
 
+### Date.ToText
+
+**Syntax**
 ```m
 Date.ToText(date as date, optional format as any, optional culture as text)
 ```
+**Syntax + Placeholder**
+```m
+Date.ToText(\#date(2025,8,20), "yyyy-MM-dd")
+```
+**Example**
+```m
+Date.ToText(\#date(2025,8,20), "yyyy-MM-dd")
 
 
-### **Time.ToText**
+```
 
+### Time.ToText
+
+**Syntax**
 ```m
 Time.ToText(time as time, optional format as any, optional culture as text)
 ```
+**Syntax + Placeholder**
+```m
+Time.ToText(\#time(11,26,0), "HH:mm:ss")
+```
+**Example**
+```m
+Time.ToText(\#time(11,26,0), "HH:mm:ss")
 
 
-### **DateTime.ToText**
+```
 
+### DateTime.ToText
+
+**Syntax**
 ```m
 DateTime.ToText(datetime as datetime, optional format as any, optional culture as text)
 ```
+**Syntax + Placeholder**
+```m
+DateTime.ToText(\#datetime(2025,8,20,11,26,0), "yyyy-MM-dd HH:mm:ss")
+```
+**Example**
+```m
+DateTime.ToText(\#datetime(2025,8,20,11,26,0), "yyyy-MM-dd HH:mm:ss")
 
 
-### **DateTime.AddZone**
+```
 
+### DateTime.AddZone
+
+**Syntax**
 ```m
 DateTime.AddZone(datetime as datetime, offset as number) as datetimezone
 ```
+**Syntax + Placeholder**
+```m
+DateTime.AddZone(\#datetime(2025,8,20,11,26,0), +5.5)
+```
+**Example**
+```m
+DateTime.AddZone(\#datetime(2025,8,20,11,26,0), +5.5)
 
 
-### **DateTimeZone.SwitchZone**
+```
 
+### DateTimeZone.SwitchZone
+
+**Syntax**
 ```m
 DateTimeZone.SwitchZone(datetimezone as datetimezone, offset as number) as datetimezone
 ```
+**Syntax + Placeholder**
+```m
+DateTimeZone.SwitchZone(\#datetimezone(2025,8,20,11,26,0,+5.5), 0)
+```
+**Example**
+```m
+DateTimeZone.SwitchZone(\#datetimezone(2025,8,20,11,26,0,+5.5), 0)
 
 
-### **DateTimeZone.ToLocal**
+```
 
+### DateTimeZone.ToLocal
+
+**Syntax**
 ```m
 DateTimeZone.ToLocal(datetimezone as datetimezone) as datetime
 ```
+**Syntax + Placeholder**
+```m
+DateTimeZone.ToLocal(\#datetimezone(2025,8,20,11,26,0,0))
+```
+**Example**
+```m
+DateTimeZone.ToLocal(\#datetimezone(2025,8,20,11,26,0,0))
 
 
-### **DateTimeZone.RemoveZone**
+```
 
+### DateTimeZone.RemoveZone
+
+**Syntax**
 ```m
 DateTimeZone.RemoveZone(datetimezone as datetimezone) as datetime
 ```
-
-
+**Syntax + Placeholder**
+```m
+DateTimeZone.RemoveZone(\#datetimezone(2025,8,20,11,26,0,+5.5))
+```
+**Example**
+```m
+DateTimeZone.RemoveZone(\#datetimezone(2025,8,20,11,26,0,+5.5))
+```
 ***
 
 # END OF THE CHEATSHEET
